@@ -61,6 +61,10 @@ public class DetailActivity extends AppCompatActivity {
         Toast.makeText(this, R.string.detail_error_message, Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * sets the values in the UI with the sandwich that has been clicked on
+     * @param sandwich
+     */
     private void populateUI(Sandwich sandwich) {
         TextView alsoKnownTextView = findViewById(R.id.also_known_tv);
         TextView ingredientsTextView = findViewById(R.id.ingredients_tv);
@@ -105,10 +109,20 @@ public class DetailActivity extends AppCompatActivity {
         return sb.toString();
     }
 
+    /**
+     * Checks if the list has null values
+     * @param list
+     * @return true if the list is empty, false if there are valid values in the list
+     */
     private boolean checkForNullList(List<String> list) {
         return list.get(0).equals("");
     }
 
+    /**
+     * Checks if the string is empty or not
+     * @param word
+     * @return true if string is empty, false if string is valid
+     */
     private boolean checkForNullString(String word) {
         return word.equals("");
     }
