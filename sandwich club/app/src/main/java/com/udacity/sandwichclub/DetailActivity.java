@@ -14,7 +14,25 @@ import com.udacity.sandwichclub.utils.JsonUtils;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class DetailActivity extends AppCompatActivity {
+
+    @BindView(R.id.image_iv)
+    ImageView ingredientsImageView;
+    @BindView(R.id.also_known_tv)
+    TextView alsoKnownTextView;
+    @BindView(R.id.ingredients_tv)
+    TextView ingredientsTextView;
+    @BindView(R.id.origin_label)
+    TextView originLabel;
+    @BindView(R.id.origin_tv)
+    TextView originTextView;
+    @BindView(R.id.description_tv)
+    TextView descriptionTextView;
+    @BindView(R.id.also_known_label)
+    TextView alsoKnownLabel;
 
     public static final String EXTRA_POSITION = "extra_position";
     private static final int DEFAULT_POSITION = -1;
@@ -23,8 +41,8 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-
-        ImageView ingredientsIv = findViewById(R.id.image_iv);
+        //bind the view using butterknife
+        ButterKnife.bind(this);
 
         Intent intent = getIntent();
         if (intent == null) {
@@ -51,7 +69,7 @@ public class DetailActivity extends AppCompatActivity {
         Picasso.with(this)
                 .load(sandwich.getImage())
                 .placeholder(R.drawable.placeholder)
-                .into(ingredientsIv);
+                .into(ingredientsImageView);
 
         setTitle(sandwich.getMainName());
     }
@@ -63,27 +81,22 @@ public class DetailActivity extends AppCompatActivity {
 
     /**
      * sets the values in the UI with the sandwich that has been clicked on
+     *
      * @param sandwich
      */
     private void populateUI(Sandwich sandwich) {
-        TextView alsoKnownTextView = findViewById(R.id.also_known_tv);
-        TextView ingredientsTextView = findViewById(R.id.ingredients_tv);
-        TextView originTextView = findViewById(R.id.origin_tv);
-        TextView descriptionTextView = findViewById(R.id.description_tv);
         TextView label;
         //Set the textviews with the proper text
         if (checkForNullList(sandwich.getAlsoKnownAs())) {
             alsoKnownTextView.setVisibility(View.GONE);
-            label = findViewById(R.id.also_known_label);
-            label.setVisibility(View.GONE);
+            alsoKnownLabel.setVisibility(View.GONE);
         } else {
             alsoKnownTextView.setText(convertListToString(sandwich.getAlsoKnownAs()));
         }
         ingredientsTextView.setText(convertListToString(sandwich.getIngredients()));
         if (checkForNullString(sandwich.getPlaceOfOrigin())) {
             originTextView.setVisibility(View.GONE);
-            label = findViewById(R.id.origin_label);
-            label.setVisibility(View.GONE);
+            originLabel.setVisibility(View.GONE);
         } else {
             originTextView.setText(sandwich.getPlaceOfOrigin());
         }
@@ -111,6 +124,7 @@ public class DetailActivity extends AppCompatActivity {
 
     /**
      * Checks if the list has null values
+     *
      * @param list
      * @return true if the list is empty, false if there are valid values in the list
      */
@@ -120,6 +134,7 @@ public class DetailActivity extends AppCompatActivity {
 
     /**
      * Checks if the string is empty or not
+     *
      * @param word
      * @return true if string is empty, false if string is valid
      */
