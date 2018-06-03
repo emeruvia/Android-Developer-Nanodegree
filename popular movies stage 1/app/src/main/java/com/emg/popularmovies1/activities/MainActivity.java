@@ -3,9 +3,14 @@ package com.emg.popularmovies1.activities;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 
 import com.emg.popularmovies1.R;
+import com.emg.popularmovies1.interfaces.MovieClient;
+import com.emg.popularmovies1.models.Movie;
+import com.emg.popularmovies1.models.Movies;
+import com.emg.popularmovies1.network.RetrofitClient;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -17,7 +22,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 import retrofit2.http.Url;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,11 +37,32 @@ public class MainActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-    String url = "http://api.themoviedb" +
-        ".org/3/movie/popular?api_key=" + getResources().getString(R.string
-        .API_KEY);
-    System.out.println(url);
-    new FetchData().execute(url);
+    String URL = "http://api.themoviedb.org";
+    String popMovies = "popular";
+    String topRated = "top_rated";
+
+    Retrofit retrofit = RetrofitClient.getClient(URL);
+    MovieClient client = retrofit.create(MovieClient.class);
+    Call<Movies> call = client.movies(popMovies, getResources().getString(R.string.API_KEY));
+    call.enqueue(new Callback<Movies>() {
+      @Override
+      public void onResponse(Call<Movies> call, Response<Movies> response) {
+        Movies movies = response.body();
+        Log.d("Movies", String.valueOf(movies.getTotalResults()));
+
+      }
+
+      @Override
+      public void onFailure(Call<Movies> call, Throwable t) {
+        Log.d("Status", t.toString());
+      }
+    });
+
+//    String url = "http://api.themoviedb" +
+//        ".org/3/movie/top_rated?api_key=" + getResources().getString(R.string
+//        .API_KEY);
+//    System.out.println(url);
+//    new FetchData().execute(url);
 
   }
 
