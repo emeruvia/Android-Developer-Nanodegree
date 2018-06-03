@@ -48,8 +48,14 @@ public class MainActivity extends AppCompatActivity {
       @Override
       public void onResponse(Call<Movies> call, Response<Movies> response) {
         Movies movies = response.body();
-        Log.d("Movies", String.valueOf(movies.getTotalResults()));
-
+        List<Movie> movieList = movies.getMovieList();
+        for (Movie m :movieList) {
+          Log.d("Movie",
+              m.getTitle()+ ", "
+                  + m.getId()+ ", "
+                  + m.getUserRating() + "\n"
+          );
+        }
       }
 
       @Override
