@@ -2,7 +2,6 @@ package com.emg.popularmovies1.models;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,7 +16,7 @@ public class Movies {
   @SerializedName("total_pages")
   private int totalPages;
   @SerializedName("results")
-  private List<Movie> movieList = new ArrayList<>();
+  List<Movie> movieList;
 
   public int getPage() {
     return page;
