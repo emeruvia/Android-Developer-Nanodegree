@@ -1,22 +1,8 @@
 package com.emg.popularmovies1.models;
 
-import android.media.Image;
-import android.support.annotation.NonNull;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import com.emg.popularmovies1.R;
 import com.google.gson.annotations.SerializedName;
-import com.mikepenz.fastadapter.FastAdapter;
-import com.mikepenz.fastadapter.items.AbstractItem;
 
-import java.util.List;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
-public class Movie extends AbstractItem<Movie, Movie.ViewHolder> {
+public class Movie {
 
   @SerializedName("id")
   private int id;
@@ -65,42 +51,27 @@ public class Movie extends AbstractItem<Movie, Movie.ViewHolder> {
     return releaseDate;
   }
 
-  @NonNull
-  @Override
-  public ViewHolder getViewHolder(View v) {
-    return null;
+  public void setId(int id) {
+    this.id = id;
   }
 
-  @Override
-  public int getType() {
-    return R.id.movies_rv;
+  public void setTitle(String title) {
+    this.title = title;
   }
 
-  @Override
-  public int getLayoutRes() {
-    return R.layout.activity_main_moviecardview;
+  public void setImagePath(String imagePath) {
+    this.imagePath = imagePath;
   }
 
-  protected static class ViewHolder extends FastAdapter.ViewHolder<Movie> {
+  public void setOverview(String overview) {
+    this.overview = overview;
+  }
 
-    @BindView(R.id.posterImageView)
-    ImageView poster;
-    @BindView(R.id.titleTextView)
-    TextView movieTitle;
+  public void setUserRating(double userRating) {
+    this.userRating = userRating;
+  }
 
-    public ViewHolder(View view) {
-      super(view);
-      ButterKnife.bind(this, view);
-    }
-
-    @Override
-    public void bindView(Movie item, List<Object> payloads) {
-
-    }
-
-    @Override
-    public void unbindView(Movie item) {
-
-    }
+  public void setReleaseDate(String releaseDate) {
+    this.releaseDate = releaseDate;
   }
 }
