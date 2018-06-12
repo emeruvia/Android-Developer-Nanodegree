@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:paddingBottom="37dp"
             android:paddingEnd="10dp"
-            android:paddingStart="30dp"
+            android:paddingStart="0dp"
             android:paddingTop="37dp"
             android:text="@string/movie_name"
             android:textSize="20sp" />
