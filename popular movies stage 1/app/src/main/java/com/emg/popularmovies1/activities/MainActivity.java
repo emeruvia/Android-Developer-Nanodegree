@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
     ButterKnife.bind(this);
-
     LinearLayoutManager layoutManager = new LinearLayoutManager(this);
     recyclerView.setLayoutManager(layoutManager);
 
@@ -47,12 +46,13 @@ public class MainActivity extends AppCompatActivity {
         Movies movies = response.body();
         Log.d("Page", String.valueOf(movies.getPage()));
         List<Movie> movieList = movies.getMovieList();
-        for (Movie m :movieList) {
+        for (Movie m : movieList) {
           Log.d("Movie",
-              m.getTitle()+ ", "
+              m.getTitle() + ", "
+              + m.getImagePath() + "\n"
           );
         }
-        MovieAdapter viewAdapter =  new MovieAdapter(movieList);
+        MovieAdapter viewAdapter = new MovieAdapter(movieList);
         recyclerView.setAdapter(viewAdapter);
 
       }

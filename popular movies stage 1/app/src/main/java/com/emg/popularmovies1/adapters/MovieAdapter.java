@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.emg.popularmovies1.R;
 import com.emg.popularmovies1.interfaces.ClickListener;
 import com.emg.popularmovies1.models.Movie;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -22,7 +23,8 @@ import butterknife.ButterKnife;
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
 
   private List<Movie> movieList;
-  ClickListener clickListener;
+  private final String url = "http://image.tmdb.org/t/p/w342/";
+  private ClickListener clickListener;
 
   //Default constructor
   public MovieAdapter(List<Movie> movieList) {
@@ -41,6 +43,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
   @Override
   public void onBindViewHolder(@NonNull MovieAdapter.ViewHolder holder, int position) {
     holder.movieTitle.setText(movieList.get(position).getTitle());
+    Picasso.with(holder.poster.getContext())
+        .load(url + movieList.get(position).getImagePath())
+        .into(holder.poster);
   }
 
   @Override
@@ -63,11 +68,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
       super(itemView);
       ButterKnife.bind(this, itemView);
       itemView.setOnClickListener(this);
-    }
-
-    public void bind(Movie movie) {
-      movieTitle.setText(movie.getTitle());
-//      set the image for loading
     }
 
     @Override
