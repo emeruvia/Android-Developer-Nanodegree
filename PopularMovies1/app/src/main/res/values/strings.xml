@@ -3,5 +3,6 @@
     <string name="sort_popular">Popular Movies</string>
     <string name="sort_top_rated">Top Rated</string>
     <string name="menu_group_title">Sort By</string>
-    <string name="image_url">http://image.tmdb.org/t/p/w342/</string>
+    <string name="image_url">http://image.tmdb.org/t/p/w780/</string>
+    <string name="loading_image">Loading</string>
 </resources>

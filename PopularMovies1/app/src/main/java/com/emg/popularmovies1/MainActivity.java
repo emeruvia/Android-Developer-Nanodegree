@@ -36,13 +36,12 @@ public class MainActivity extends AppCompatActivity
     setContentView(R.layout.activity_main);
     ButterKnife.bind(this);
     setSupportActionBar(mToolbar);
-    fragmentManager = getSupportFragmentManager();
-//    fragment = new PopularMoviesFragment();
-//    fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
-//    new Network(this, Constants.SORT_POPULAR);
     ActionBar actionBar = getSupportActionBar();
     actionBar.setDisplayHomeAsUpEnabled(true);
     actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
+    fragmentManager = getSupportFragmentManager();
+    fragment = new PopularMoviesFragment();
+    fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
     mNavigationView.setNavigationItemSelectedListener(this);
   }
 
