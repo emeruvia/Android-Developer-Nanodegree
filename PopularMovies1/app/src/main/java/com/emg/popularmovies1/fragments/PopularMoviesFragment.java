@@ -3,14 +3,12 @@ package com.emg.popularmovies1.fragments;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.emg.popularmovies1.R;
 import com.emg.popularmovies1.adapters.MovieAdapter;
@@ -31,9 +29,10 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PopularMoviesFragment extends Fragment implements ClickListener {
+public class PopularMoviesFragment extends Fragment {
 
   private List<Movie> movieList;
+  private ClickListener clickListener;
   @BindView(R.id.popular_movies_rv)
   RecyclerView mRecyclerView;
   @BindView(R.id.progress_bar)
@@ -48,6 +47,12 @@ public class PopularMoviesFragment extends Fragment implements ClickListener {
                            Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_popular_movies, container, false);
     ButterKnife.bind(this, view);
+    clickListener = new ClickListener() {
+      @Override
+      public void itemClicked(View view, int position) {
+        Log.d("Movie Clicked", movieList.get(position).getTitle());
+      }
+    };
     mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
     fetchData(new Network(
         getResources().getString(R.string.API_KEY),
@@ -69,6 +74,7 @@ public class PopularMoviesFragment extends Fragment implements ClickListener {
               m.getTitle() + ", " + m.getImagePath() + "\n");
         }
         MovieAdapter viewAdapter = new MovieAdapter(movieList);
+        viewAdapter.setClickListener(clickListener);
         mRecyclerView.setAdapter(viewAdapter);
       }
 
@@ -77,10 +83,5 @@ public class PopularMoviesFragment extends Fragment implements ClickListener {
         Log.d("Status", t.toString());
       }
     });
-  }
-
-  @Override
-  public void itemClicked(View view, int position) {
-    Log.d("Movie Clicked", movieList.get(position).getTitle());
   }
 }
