@@ -10,6 +10,9 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.emg.popularmovies1.utils.Constants;
+import com.emg.popularmovies1.utils.Network;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -28,6 +31,7 @@ public class MainActivity extends AppCompatActivity
     ActionBar actionBar = getSupportActionBar();
     actionBar.setDisplayHomeAsUpEnabled(true);
     actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
+    new Network(this, Constants.SORT_POPULAR);
   }
 
   @Override

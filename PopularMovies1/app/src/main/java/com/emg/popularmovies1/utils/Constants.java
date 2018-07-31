@@ -2,7 +2,7 @@ package com.emg.popularmovies1.utils;
 
 public class Constants {
 
-  private Constants() {
+  public Constants() {
     //restrict instantiation
   }
 
