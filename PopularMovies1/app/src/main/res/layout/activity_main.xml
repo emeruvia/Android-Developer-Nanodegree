@@ -8,8 +8,8 @@
     android:fitsSystemWindows="true"
     tools:context=".MainActivity">
 
-    <FrameLayout
-        android:id="@+id/content_frame"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -21,12 +21,12 @@
             app:titleTextColor="@color/colorTextActionBar"
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/main_recycler_view"
+        <FrameLayout
+            android:id="@+id/content_frame"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"/>
 
-    </FrameLayout>
+    </LinearLayout>
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
