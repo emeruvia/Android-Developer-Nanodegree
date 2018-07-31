@@ -37,8 +37,8 @@ public class MainActivity extends AppCompatActivity
     ButterKnife.bind(this);
     setSupportActionBar(mToolbar);
     fragmentManager = getSupportFragmentManager();
-    fragment = new PopularMoviesFragment();
-    fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+//    fragment = new PopularMoviesFragment();
+//    fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
 //    new Network(this, Constants.SORT_POPULAR);
     ActionBar actionBar = getSupportActionBar();
     actionBar.setDisplayHomeAsUpEnabled(true);
@@ -64,15 +64,12 @@ public class MainActivity extends AppCompatActivity
     switch(item.getItemId()) {
       case R.id.sort_by_popular:
         fragment = new PopularMoviesFragment();
-//        new Network(this, Constants.SORT_POPULAR);
         break;
       case R.id.sort_by_top_rated:
         fragment = new TopRatedFragment();
-//        new Network(this, Constants.SORT_TOP_RATED);
         break;
       default:
         fragment = new PopularMoviesFragment();
-//        new Network(this, Constants.SORT_POPULAR);
         break;
     }
     fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
