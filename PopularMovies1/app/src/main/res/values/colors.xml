@@ -5,5 +5,5 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorTextActionBar">#FFFFFF</color>
     <color name="colorTransparentBackground">#CCFFFFFF</color>
-    <color name="colorText">#FFFFFF</color>
+    <color name="colorText">#404040</color>
 </resources>
