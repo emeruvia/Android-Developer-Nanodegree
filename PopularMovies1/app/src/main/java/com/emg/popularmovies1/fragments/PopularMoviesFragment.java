@@ -32,10 +32,9 @@ import retrofit2.Response;
 public class PopularMoviesFragment extends Fragment {
 
   private List<Movie> movieList;
-  private ClickListener clickListener;
-  @BindView(R.id.popular_movies_rv)
+  @BindView(R.id.movie_list_rv)
   RecyclerView mRecyclerView;
-  @BindView(R.id.progress_bar)
+  @BindView(R.id.movie_list_progress_bar)
   ProgressBar mProgressBar;
 
   public PopularMoviesFragment() {
@@ -45,14 +44,8 @@ public class PopularMoviesFragment extends Fragment {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
-    View view = inflater.inflate(R.layout.fragment_popular_movies, container, false);
+    View view = inflater.inflate(R.layout.fragment_movie_list, container, false);
     ButterKnife.bind(this, view);
-    clickListener = new ClickListener() {
-      @Override
-      public void itemClicked(View view, int position) {
-        Log.d("Movie Clicked", movieList.get(position).getTitle());
-      }
-    };
     mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
     fetchData(new Network(
         getResources().getString(R.string.API_KEY),
@@ -70,11 +63,16 @@ public class PopularMoviesFragment extends Fragment {
         Log.d("Page", String.valueOf(movies.getPage()));
         movieList = movies.getMovieList();
         for (Movie m : movieList) {
-          Log.d("Movie",
+          Log.d("Popular Movies",
               m.getTitle() + ", " + m.getImagePath() + "\n");
         }
         MovieAdapter viewAdapter = new MovieAdapter(movieList);
-        viewAdapter.setClickListener(clickListener);
+        viewAdapter.setClickListener(new ClickListener() {
+          @Override
+          public void itemClicked(View view, int position) {
+            Log.d("Movie Clicked", movieList.get(position).getTitle());
+          }
+        });
         mRecyclerView.setAdapter(viewAdapter);
       }
 
