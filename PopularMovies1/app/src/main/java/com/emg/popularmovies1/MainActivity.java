@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity
     setSupportActionBar(mToolbar);
     ActionBar actionBar = getSupportActionBar();
     actionBar.setDisplayHomeAsUpEnabled(true);
-    actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
+    actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white);
     fragmentManager = getSupportFragmentManager();
     fragment = new PopularMoviesFragment();
     fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();

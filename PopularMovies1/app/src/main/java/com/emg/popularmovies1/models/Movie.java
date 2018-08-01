@@ -2,7 +2,10 @@ package com.emg.popularmovies1.models;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Movie {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class Movie implements Serializable{
 
   @SerializedName("id")
   private int id;

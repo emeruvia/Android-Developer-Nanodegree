@@ -6,4 +6,7 @@
     <string name="image_url">http://image.tmdb.org/t/p/w780/</string>
     <string name="loading_image">Loading</string>
     <string name="description">Description:</string>
+    <string name="title">Movie Title</string>
+    <string name="release_date">Release Date</string>
+    <string name="rating">Rating</string>
 </resources>

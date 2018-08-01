@@ -4,5 +4,6 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorTextActionBar">#FFFFFF</color>
-    <color name="colorTransparentBackground">#CC000000</color>
+    <color name="colorTransparentBackground">#CCFFFFFF</color>
+    <color name="colorText">#FFFFFF</color>
 </resources>
